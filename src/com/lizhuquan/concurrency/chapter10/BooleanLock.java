@@ -1,5 +1,6 @@
 package com.lizhuquan.concurrency.chapter10;
 
+import javax.swing.text.html.Option;
 import java.util.*;
 
 public class BooleanLock implements Lock {
@@ -28,32 +29,34 @@ public class BooleanLock implements Lock {
     }
 
     @Override
-    public synchronized void lock(long mills) throws TimeoutException {
+    public synchronized void lock(long mills) throws TimeoutException, InterruptedException {
 
-        Thread currThread = Thread.currentThread();
-        long deadTime = System.currentTimeMillis() + mills;
-        while (initValue) {
+        if (mills <= 0) {
+            lock();
+        } else {
+            Thread currThread = Thread.currentThread();
+            long deadTime = System.currentTimeMillis() + mills;
+            while (initValue) {
 
-            long remainTime = deadTime - System.currentTimeMillis();
-            if (remainTime <= 0) {
-                throw new TimeoutException(">>>thread " + currThread.getName() + " is timeout ");
-            }
+                long remainTime = deadTime - System.currentTimeMillis();
+                if (remainTime <= 0) {
+                    throw new TimeoutException(">>>thread " + currThread.getName() + " is timeout ");
+                }
+                Optional.of(">>>thread " + currThread.getName() + " remainTime:" + remainTime + " to wait for the lock").ifPresent(System.out::println);
 
-            if (!blockThreadCollection.contains(currThread)) {
-                blockThreadCollection.add(currThread);
-            }
-            Optional.of(">>>thread " + currThread.getName() + " wait for lock").ifPresent(System.err::println);
-            try {
+                if (!blockThreadCollection.contains(currThread)) {
+                    blockThreadCollection.add(currThread);
+                }
+
+                Optional.of(">>>thread " + currThread.getName() + " wait for lock").ifPresent(System.err::println);
                 this.wait(remainTime);
                 // 当前线程得到要么被notify， 要么超时，才会往下执行
-            } catch (InterruptedException e) {
-                e.printStackTrace();
             }
-        }
 
-        initValue = true;
-        currLockThread = currThread;
-        Optional.of(">>>thread " + currThread.getName() + " get the lock ").ifPresent(System.out::println);
+            initValue = true;
+            currLockThread = currThread;
+            Optional.of(">>>thread " + currThread.getName() + " get the lock ").ifPresent(System.out::println);
+        }
     }
 
     @Override

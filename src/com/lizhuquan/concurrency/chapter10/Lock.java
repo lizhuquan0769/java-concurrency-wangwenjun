@@ -6,7 +6,7 @@ public interface Lock {
 
     void lock() throws InterruptedException;
 
-    void lock(long mills) throws TimeoutException;
+    void lock(long mills) throws TimeoutException, InterruptedException;
 
     void unlock();
 

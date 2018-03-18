@@ -13,7 +13,7 @@ public class BooleanLockTest {
                 .forEach(t -> {
                     new Thread(() -> {
                         try {
-                            lock.lock(11_000);
+                            lock.lock(13_000);
                             work();
                         } catch (InterruptedException e) {
                             e.printStackTrace();
