@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter07;
+package com.lizhuquan.concurrency.phase1.chapter07;
 
 public class _02StaticMethod {
 

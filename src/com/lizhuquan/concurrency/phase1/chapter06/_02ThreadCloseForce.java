@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter06;
+package com.lizhuquan.concurrency.phase1.chapter06;
 
 /**
  * 通过执行线程开启守护线程的方式，强制关闭长时间未工作完毕的守护线程

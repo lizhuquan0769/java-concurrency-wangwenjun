@@ -1,6 +1,5 @@
-package com.lizhuquan.concurrency.chapter10;
+package com.lizhuquan.concurrency.phase1.chapter10;
 
-import javax.swing.text.html.Option;
 import java.util.*;
 
 public class BooleanLock implements Lock {

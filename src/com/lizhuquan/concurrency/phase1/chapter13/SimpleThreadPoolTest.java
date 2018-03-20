@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter13;
+package com.lizhuquan.concurrency.phase1.chapter13;
 
 import java.util.stream.IntStream;
 

@@ -1,10 +1,9 @@
-package com.lizhuquan.concurrency.chapter13;
+package com.lizhuquan.concurrency.phase1.chapter13;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.IntStream;
 
 /**
  * @author lizhuquan

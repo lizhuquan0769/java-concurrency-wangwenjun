@@ -1,8 +1,6 @@
-package com.lizhuquan.concurrency.chapter09;
+package com.lizhuquan.concurrency.phase1.chapter09;
 
-import javax.swing.text.html.Option;
 import java.util.*;
-import java.util.stream.IntStream;
 
 public class CaptureService {
 

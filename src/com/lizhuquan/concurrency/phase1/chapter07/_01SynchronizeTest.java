@@ -1,8 +1,5 @@
-package com.lizhuquan.concurrency.chapter07;
+package com.lizhuquan.concurrency.phase1.chapter07;
 
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 进程运行中可以通过

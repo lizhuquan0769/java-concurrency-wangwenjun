@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter11;
+package com.lizhuquan.concurrency.phase1.chapter11;
 
 public class Test {
 

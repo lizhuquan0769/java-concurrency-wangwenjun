@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter06;
+package com.lizhuquan.concurrency.phase1.chapter06;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

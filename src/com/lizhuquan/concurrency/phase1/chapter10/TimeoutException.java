@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.chapter10;
+package com.lizhuquan.concurrency.phase1.chapter10;
 
 public class TimeoutException extends Exception {
 
