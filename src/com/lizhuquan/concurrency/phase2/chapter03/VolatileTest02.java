@@ -6,20 +6,34 @@ package com.lizhuquan.concurrency.phase2.chapter03;
  */
 public class VolatileTest02 {
 
-    private static int SHARE_VAL = 0;
+    private volatile static int SHARE_VAL = 0;
 
     private final static int MAX_VAL = 500;
 
     public static void main(String[] args) {
         new Thread(() -> {
             while (SHARE_VAL < MAX_VAL) {
-                System.out.printf(Thread.currentThread().getName() + ": share value add to %d\n", ++SHARE_VAL);
+                synchronized (VolatileTest02.class) {
+                    System.out.printf(Thread.currentThread().getName() + ": share value add to %d\n", ++SHARE_VAL);
+                }
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }, "ADDER-1").start();
 
         new Thread(() -> {
             while (SHARE_VAL < MAX_VAL) {
-                System.out.printf(Thread.currentThread().getName() + ": share value add to %d\n", ++SHARE_VAL);
+                synchronized (VolatileTest02.class) {
+                    System.out.printf(Thread.currentThread().getName() + ": share value add to %d\n", ++SHARE_VAL);
+                }
+                try {
+                    Thread.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }, "ADDER-2").start();
     }
