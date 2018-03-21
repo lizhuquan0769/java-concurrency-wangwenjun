@@ -1,7 +1,7 @@
 package com.lizhuquan.concurrency.phase2.chapter01;
 
 /**
- * holder模式
+ * Initialization on Demand Holder模式
  */
 public class SingletonObject6 {
 
@@ -9,14 +9,14 @@ public class SingletonObject6 {
 
     }
 
-    /**
-     * static只会在jvm中初始化一次， 第一次调用的时候getInstance的时候才会new SingletonObject6();
-     */
     public static SingletonObject6 getInstance() {
-        return InstanceHolder.instance;
+        return SingletonHolder.instance;
     }
 
-    private static class InstanceHolder {
+    /**
+     * 在初始化这个内部类的时候，JLS(Java Language Sepcification)会保证这个类的线程安全(the class initialization phase is guaranteed by the JLS to be serial)
+     */
+    private static class SingletonHolder {
         private final static SingletonObject6 instance = new SingletonObject6();
     }
 }
