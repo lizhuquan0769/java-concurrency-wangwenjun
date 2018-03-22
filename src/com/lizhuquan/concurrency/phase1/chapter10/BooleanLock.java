@@ -4,7 +4,7 @@ import java.util.*;
 
 public class BooleanLock implements Lock {
 
-    private boolean initValue;
+    private boolean logFlag;
 
     private Collection<Thread> blockThreadCollection = new ArrayList<>();
 
@@ -14,7 +14,7 @@ public class BooleanLock implements Lock {
     public synchronized void lock() throws InterruptedException {
 
         Thread currThread = Thread.currentThread();
-        while (initValue) {
+        while (logFlag) {
             if (!blockThreadCollection.contains(currThread)) {
                 blockThreadCollection.add(currThread);
             }
@@ -22,7 +22,7 @@ public class BooleanLock implements Lock {
             this.wait();
         }
 
-        initValue = true;
+        logFlag = true;
         currLockThread = currThread;
         Optional.of(">>>thread " + currThread.getName() + " get the lock ").ifPresent(System.out::println);
     }
@@ -35,7 +35,7 @@ public class BooleanLock implements Lock {
         } else {
             Thread currThread = Thread.currentThread();
             long deadTime = System.currentTimeMillis() + mills;
-            while (initValue) {
+            while (logFlag) {
 
                 long remainTime = deadTime - System.currentTimeMillis();
                 if (remainTime <= 0) {
@@ -52,7 +52,7 @@ public class BooleanLock implements Lock {
                 // 当前线程得到要么被notify， 要么超时，才会往下执行
             }
 
-            initValue = true;
+            logFlag = true;
             currLockThread = currThread;
             Optional.of(">>>thread " + currThread.getName() + " get the lock ").ifPresent(System.out::println);
         }
@@ -63,7 +63,7 @@ public class BooleanLock implements Lock {
 
         Thread currThread = Thread.currentThread();
         if (currThread == currLockThread) {
-            this.initValue = false;
+            this.logFlag = false;
             blockThreadCollection.remove(currThread);
             Optional.of(">>>thread " + currThread.getName() + " release the lock ").ifPresent(System.out::println);
             this.notifyAll();
