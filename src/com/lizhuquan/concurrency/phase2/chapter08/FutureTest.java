@@ -11,15 +11,24 @@ public class FutureTest {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            return "FINISH";
+            return "FINISH-FUTURE";
+        });
+
+        futureService.submit(() -> {
+            try {
+                Thread.sleep(5_000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            return "FINISH-CALLBACK";
         }, (result) -> {
-            System.out.println(">>>>> auto call consumer, accept result:" + result);
+            System.out.println(">>>>> accept result by callback:" + result);
         });
 
         System.out.println(">>>>> do other thing...");
         Thread.sleep(1_000);
 
-        System.out.println(">>>>> custom accept result:" + future.get());
+        System.out.println(">>>>> accept result by future:" + future.get());
     }
 
 

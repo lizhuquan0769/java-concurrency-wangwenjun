@@ -7,16 +7,20 @@ import java.util.function.Consumer;
  */
 public class FutureService {
 
-    public <T> Future<T> submit(final FutureTask<T> futureTask, Consumer<T> consumer) {
+    public <T> Future<T> submit(final FutureTask<T> futureTask) {
         AsyncFuture<T> future = new AsyncFuture<>();
         new Thread(() -> {
             T result = futureTask.call();
             future.setResult(result);
-            if (consumer != null) {
-                consumer.accept(result);
-            }
         }).start();
 
         return future;
+    }
+
+    public <T> void submit(final FutureTask<T> futureTask, Consumer<T> consumer) {
+        new Thread(() -> {
+            T result = futureTask.call();
+            consumer.accept(result);
+        }).start();
     }
 }
