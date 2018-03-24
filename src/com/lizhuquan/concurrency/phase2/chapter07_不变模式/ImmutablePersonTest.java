@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.phase2.chapter07;
+package com.lizhuquan.concurrency.phase2.chapter07_不变模式;
 
 /**
  * Created by lizhuquan on 2018/3/23.

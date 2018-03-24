@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.phase2.chapter04;
+package com.lizhuquan.concurrency.phase2.chapter04_观测者模式;
 
 import java.util.ArrayList;
 import java.util.List;

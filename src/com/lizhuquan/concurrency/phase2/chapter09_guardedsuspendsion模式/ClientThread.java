@@ -1,6 +1,5 @@
-package com.lizhuquan.concurrency.phase2.chapter09;
+package com.lizhuquan.concurrency.phase2.chapter09_guardedsuspendsion模式;
 
-import java.util.LinkedList;
 import java.util.Random;
 import java.util.stream.IntStream;
 

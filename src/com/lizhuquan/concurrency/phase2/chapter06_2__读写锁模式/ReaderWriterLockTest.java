@@ -1,4 +1,4 @@
-package com.lizhuquan.concurrency.phase2.chapter06_2;
+package com.lizhuquan.concurrency.phase2.chapter06_2__读写锁模式;
 
 import java.util.Random;
 

@@ -1,6 +1,4 @@
-package com.lizhuquan.concurrency.phase2.chapter09;
-
-import com.sun.security.ntlm.Server;
+package com.lizhuquan.concurrency.phase2.chapter09_guardedsuspendsion模式;
 
 /**
  * guarded suspension(保护性暂挂模式)(队列缓冲)
