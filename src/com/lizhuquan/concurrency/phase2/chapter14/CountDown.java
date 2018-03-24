@@ -21,7 +21,7 @@ public class CountDown {
     public void await() throws InterruptedException {
 //        synchronized (this) {
             while (counter != total) {
-//                this.wait();
+//                this.wait(); // wait醒来后可以让变量重新从主存加载，所以这里counter可以不用volatile修饰
             }
 //        }
     }
